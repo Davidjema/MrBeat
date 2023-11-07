@@ -4,7 +4,6 @@ from kivy.uix.relativelayout import RelativeLayout
 
 
 
-
 class MainWidget(RelativeLayout):
     pass
 
