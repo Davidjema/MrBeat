@@ -1,0 +1,24 @@
+MainWidget
+
+#:import track track
+
+<MainWidget>
+    toto : toto_id
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(100)
+            ControlButton:
+                text: "Play"
+            ControlButton:
+                text: "Stop"
+        BoxLayout:
+            id : toto_id
+            orientation : "vertical"
+
+
+<ControlButton>:
+
+
+
