@@ -15,11 +15,21 @@ class TrackStepButton(ToggleButton):
 
 class TrackWidget(BoxLayout):
     # si on initialise pas, on peut pas ajouter un trackstepbutton sur le trackwidget car on a pas le self
-    def __init__(self,filename,**kwargs):
+    def __init__(self,sound,audio_engine,**kwargs):
         super(TrackWidget, self).__init__(**kwargs)
-        self.track_sound_button = TrackSoundButton()
-        self.track_sound_button.text = filename
-        self.add_widget(self.track_sound_button)
+        self.audio_engine = audio_engine
+        self.sound = sound
+        self.samples = sound.samples
+        track_sound_button = TrackSoundButton()
+        track_sound_button.text = sound.displayname
+        # sur un boutton on peut appller la fonction associé integree dans kivy .on_press pour effectuer des actions une fois que le bouton a été cliqué
+        track_sound_button.on_press = self.on_press_track_sound_button
+        self.add_widget(track_sound_button)
         for i in range(NB_STEP):
             self.add_widget(TrackStepButton())
+
+    def on_press_track_sound_button(self):
+        print("son")
+        self.audio_engine.play_sound(self.samples)
+
 
