@@ -20,7 +20,11 @@ class MainWidget(RelativeLayout):
         super(MainWidget,self).__init__(**kw)
         self.sound_kit_service = SoundKitService()
         self.NB_TRACK = self.sound_kit_service.get_nb_track()
+        kick_sound = self.sound_kit_service.get_sound(1)
+        kick_samples = kick_sound.samples 
+
         self.audio_engine = AudioEngine() 
+        self.audio_engine.create_track(kick_samples,180)
 
 
 # fonction speciale de kivy / Est appele automatiquement lorsque le widget est rajoute au widget parent / On peut avoir 1 on_parent par widget

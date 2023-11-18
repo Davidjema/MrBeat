@@ -1,5 +1,6 @@
 from audiostream.core import get_output
 from audio_source_one_shot import AudioSourceOneShot
+from audio_source_track import AudioSourceTrack
 
 """
 # get a output stream where we can play samples
@@ -35,10 +36,18 @@ class AudioEngine:
         
         self.audio_source_one_shot = AudioSourceOneShot(self.output_stream)
         self.audio_source_one_shot.start()
+
         
     def play_sound(self,samples):
         self.audio_source_one_shot.set_samples(samples)
+        
 
+    def create_track(self,samples,bpm):
+        self.samples = samples
+        self.bpm = bpm
 
+        self.audio_source_track = AudioSourceTrack(self.output_stream,self.samples,self.bpm,self.RATE)
+        self.audio_source_track.set_steps((0,1,0,1))
+        self.audio_source_track.start()
 
 
