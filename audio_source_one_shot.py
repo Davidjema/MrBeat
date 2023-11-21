@@ -6,7 +6,6 @@ from array import array
 # Elle est appele de facon automatique par le CPU en fonction du buffer et de ce qu il lui reste dans le fifo
 
 class AudioSourceOneShot(ThreadSource):
-    # On a besoin du output_steam pour initliser le ThreadSource
     def __init__(self,output_stream,*args, **kwargs):
         ThreadSource.__init__(self,output_stream,*args,**kwargs)
         self.chunk_nb_samples = 32
@@ -15,7 +14,6 @@ class AudioSourceOneShot(ThreadSource):
         self.current_sample_index = 0
         # 0 en 8bits c'est \x00
         # 0 en 16bits c'est \xoo\xoo
-        # un buf c'est une liste ?
         self.buf = array('h',b"\x00\x00"* self.chunk_nb_samples)
         self.set_samples(self.buf)
 
